@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "webhooks-2",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Webhooks 2 for proto build",
   "license": "MIT",
   "scripts": {
     "build": "nest build",
@@ -22,6 +22,8 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/schedule": "^2.1.0",
+    "@nestjs/swagger": "^6.1.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5"
   },

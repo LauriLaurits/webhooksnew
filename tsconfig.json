@@ -12,5 +12,6 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true
-  }
+  },
+  "$schema": "https://json.schemastore.org/tsconfig"
 }
