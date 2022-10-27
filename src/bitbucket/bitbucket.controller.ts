@@ -15,9 +15,11 @@ export class BitbucketController {
 
   @Post()
   async processPayload(@Body() payload: BitbucketPayloadDto) {
-    this.logger.log('New payload');
+    this.logger.log('New payload', payload);
     const tasks = await this.bitbucketService.extractTasksFromPayload(payload);
     tasks.map((task) => this.queueService.addTask(task));
+
+    return payload;
 
     //console.log(inspect(tasks, false, null, true));
   }

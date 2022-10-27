@@ -34,7 +34,7 @@ export class AppService {
       branchName: body.push.changes[0].old.name,
       sshUrl: sshUrl,
       date: body.push.changes[0].new.target.date,
-      email: body.push.changes[0].commits[0].author.raw,
+      //email: body.push.changes[0].commits[0].author.raw,
       displayName: body.actor.display_name,
       username: body.actor.nickname,
       id: body.actor.uuid,
