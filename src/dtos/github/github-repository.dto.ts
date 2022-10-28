@@ -7,5 +7,9 @@ export class GithubRepositoryDto {
 
   @IsNotEmpty()
   @IsString()
-  ssh_url: string;
+  clone_url: string;
+
+  @IsNotEmpty()
+  @IsString()
+  default_branch: string;
 }

@@ -23,7 +23,7 @@ export class QueueService {
 
     this.lastTaskStartedAt = DateTime.now();
     const task = this.queue.shift();
-    this.protoTaskRunnerService.runTask(task);
+    await this.protoTaskRunnerService.runTask(task);
     // if (this.lastTaskStartedAt !== null) {
     //   this.logger.debug(
     //     `Cannot run another task ${this.lastTaskStartedAt.toISO()} ${

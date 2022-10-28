@@ -5,10 +5,6 @@ export class GithubAuthorDto {
   @IsString()
   name: string;
 
-  @IsNotEmpty()
-  @IsString()
-  username: string;
-
   @IsEmail({
     allow_display_name: true,
   })

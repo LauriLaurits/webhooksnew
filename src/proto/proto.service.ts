@@ -1,22 +1,16 @@
-export interface ExecutionResult {
-  code: number;
-  stdout: string;
-  stderr: string;
-}
-
 import { Injectable, Logger } from '@nestjs/common';
 import { spawn } from 'child_process';
-import {existsSync, mkdtemp, mkdtempSync, rm, rmdir} from 'fs';
-import { workerData } from 'worker_threads';
-import { TaskDto } from '../dtos/task-queue/task.dto';
+import { existsSync, mkdtemp, rm } from 'fs';
+import { Task } from '../task';
 import { tmpdir } from 'os';
-import { join, sep } from 'path';
+import { sep } from 'path';
+import { ExecutionResultInterface } from '../execution-result.interface';
 
 @Injectable()
 export class ProtoTaskRunnerService {
   private readonly logger = new Logger(this.constructor.name);
 
-  async runTask(task: TaskDto) {
+  async runTask(task: Task) {
     let workDir;
 
     try {
@@ -42,7 +36,7 @@ export class ProtoTaskRunnerService {
     return this.runCmd('git', ['clone', repository, '-b', branch, '--single-branch', dir]);
   }
 
-  private async runCmd(cmd: string, args: string[]): Promise<ExecutionResult> {
+  private async runCmd(cmd: string, args: string[]): Promise<ExecutionResultInterface> {
     return new Promise((resolve, reject) => {
       const cp = spawn(cmd, args);
       const timeout = setTimeout(() => {
@@ -111,11 +105,12 @@ export class ProtoTaskRunnerService {
   private async getBuildConfig(workDir: string) {
     const buildConfig = workDir + '/build-config.js';
     const exist = existsSync(buildConfig);
-    if(exist) {
+    if (exist) {
+      console.log('WorkDir', workDir);
+      console.log('buildConfig', buildConfig);
       return require(buildConfig);
     }
     //TODO delete work Dir
     this.logger.verbose(`build-config.js missing`);
-
   }
 }

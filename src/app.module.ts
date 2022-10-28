@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TaskRunnerService } from './task-runner.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { BitbucketModule } from './bitbucket/bitbucket.module';
+import { GithubModule } from './github/github.module';
 
 @Module({
-  imports: [ScheduleModule.forRoot(), BitbucketModule],
+  imports: [ScheduleModule.forRoot(), BitbucketModule, GithubModule],
   controllers: [],
   providers: [],
 })

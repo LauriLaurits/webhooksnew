@@ -18,9 +18,6 @@ export class BitbucketController {
     this.logger.log('New payload', payload);
     const tasks = await this.bitbucketService.extractTasksFromPayload(payload);
     tasks.map((task) => this.queueService.addTask(task));
-
-    return payload;
-
     //console.log(inspect(tasks, false, null, true));
   }
 }
